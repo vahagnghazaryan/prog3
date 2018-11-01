@@ -22,7 +22,7 @@ var matrix = [
 [0,0,3,1,1]
 ]
 */
-var side = 90;
+var side = 50;
 
 function setup() {
     frameRate(1);
