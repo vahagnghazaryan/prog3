@@ -1,4 +1,3 @@
-
 var grassArr = [];
 var grassEaterArr = [];
 var animalArr = [];
@@ -13,8 +12,16 @@ var matrix = [
     [1, 2, 2, 0, 0, 0, 3, 0, 2, 3, 0, 1, 1, 1, 0, 0, 1],
     [1, 1, 0, 2, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1],
     [1, 2, 0, 0, 0, 0, 4, 0, 2, 1, 1, 1, 0, 3, 1, 0, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 2, 2, 0, 0, 0, 3, 0, 2, 3, 0, 1, 1, 1, 0, 0, 1],
+    [1, 1, 0, 2, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1],
+    [1, 2, 0, 0, 0, 0, 4, 0, 2, 1, 1, 1, 0, 3, 1, 0, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    
 ];
+
+var mX = matrix[0].length-1
+var mY = matrix.length-1
 
 /*var matrix=[
 [0,0,0,1,0],
@@ -25,6 +32,8 @@ var matrix = [
 */
 var side = 50;
 
+var k =0;
+document.body.style.backgroundImage = "url('img/spring.png')";
 function setup() {
     frameRate(1);
     createCanvas(matrix[0].length * side, matrix.length * side);
@@ -55,6 +64,28 @@ function setup() {
 }
 
 function draw() {
+    k++;
+    if(k==0)
+        {
+            document.body.style.backgroundImage = "url('img/summer.png')";
+        }
+    if(k==5)
+    {
+        document.body.style.backgroundImage = "url('img/automn.png')";
+    }
+    if(k==10)
+    {
+        document.body.style.backgroundImage = "url('img/winter.png')";
+    }
+    if(k==15)
+    {
+        document.body.style.backgroundImage = "url('../img/spring.jpg')";
+    }
+    if(k>15)
+    {
+        k = 0;
+    }
+    
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
             if (matrix[y][x] == 1) {
@@ -123,3 +154,5 @@ function draw() {
 
 }
 */
+
+
