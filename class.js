@@ -1,4 +1,4 @@
-class Grass {
+module.exports = class Grass {
     constructor(x, y) {
         this.x = x;
         this.y = y;
