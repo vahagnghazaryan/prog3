@@ -1,3 +1,4 @@
+// red one , moves through his own directions, eats grass, if old enough and find partner around breed, die as others 
 class Animal extends LivingCreature{
 
                     constructor(x, y) {
@@ -16,7 +17,7 @@ class Animal extends LivingCreature{
                             [this.x, this.y + 1],
                         ];
                     }
-                    /////////
+                    
                     chooseCell(index_number) {
                         this.getNewCoords();
                         return super.chooseCell(index_number)
@@ -33,9 +34,9 @@ class Animal extends LivingCreature{
                         }
 
                         this.energy--;
-                        // console.log("animal's energy is   " + this.energy);
+                        console.log("animal's energy is   " + this.energy);
                     }
-                    //////////////
+                  
                     eat() {
                         if (this.energy <= 10) {
                             this.getNewCoords();
@@ -53,39 +54,39 @@ class Animal extends LivingCreature{
                                 }
                                 // var index = grassEaterArr.indexOf(newGrass);// GrassEater, [0,1]
                                 // grassEaterArr.splice(index, 1);
-                                //  console.log("animal's energy is   " + this.energy);
+                                console.log("animal's energy is   " + this.energy);
                             }
                         }
                     }
+
                     breed() {
                         this.canBreed++;
                         if (this.energy > 1) {
                             var newAnimal = this.chooseCell(3);
                             var newCell = random(this.chooseCell(0))
-                            if (newAnimal && newCell && this.canBreed >= 5) {
+                            if (newAnimal && newCell && this.canBreed >= 3 && newCell != newAnimal) {
                                 var newAnimal = new Animal(newCell[0], newCell[1]);
                                 animalArr.push(newAnimal);
                                 matrix[newCell[1]][newCell[0]] = 3;
                                 this.energy--;
                                 this.canBreed = 0;
-                                //console.log("breed")
-                                //  console.log("GrassEater's energy is    " + this.energy);
+                                console.log(" Animal breeds")
+                                console.log("GrassEater's energy is    " + this.energy);
 
                             }
                         }
                     }
-                    ////////////////////
+
                     die() {
 
                         if (this.energy <= 0) {
                             matrix[this.y][this.x] = 0;
-
                             for (var i in animalArr) {
                                 if (this.x == animalArr[i].x && animalArr[i].y == this.y) {
                                     animalArr.splice(i, 1);
                                 }
                             }
-                            //   console.log("Animal is dead");
+                            console.log("Animal is dead");
                         }
 
                     }

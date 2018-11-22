@@ -1,7 +1,8 @@
+// the black one, move, die and breed as others, fight with grassEater 
 class Enemy extends LivingCreature{
     constructor(x, y, en) {
         super(x, y)
-        this.col="black";
+        this.col = "black";
         this.energy = en;
         this.index = 5;
     }
@@ -14,7 +15,7 @@ class Enemy extends LivingCreature{
         // console.log(this.energy);
         this.getNewCoords();
         var newCell = random(this.chooseCell(0));
-        if (newCell) {
+        if (newCell) {  
             matrix[this.y][this.x] = 0;
             matrix[newCell[1]][newCell[0]] = 5;
             this.x = newCell[0];
@@ -30,16 +31,14 @@ class Enemy extends LivingCreature{
             //console.log(findGrEater, grassEaterArr);
             if (findGrEater) {
                 for (var i in grassEaterArr) {
-                    if (findGrEater[0] == grassEaterArr[i].x && findGrEater[1] == grassEaterArr[i].y) {
+                    if (grassEaterArr[i].x == findGrEater[0] && grassEaterArr[i].y == findGrEater[1]) {
                         return grassEaterArr[i].fight(this);
                     }
                 }
             }
         }
-
-
     }
-
+    
     breed() {
         if (this.energy >=2) {
             var newCell = random(this.chooseCell(0));
@@ -58,7 +57,7 @@ class Enemy extends LivingCreature{
         if (this.energy <= 0) {
             matrix[this.y][this.x] = 0;
             for (var i in enemyArr) {
-                if (this.x == enemyArr[i].x && enemyArr[i].y == this.y) {
+                if (this.x == enemyArr[i].x && this.y == enemyArr[i].y) {
                     enemyArr.splice(i, 1);
                 }
             }
