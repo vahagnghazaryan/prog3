@@ -38,7 +38,7 @@ class Enemy extends LivingCreature{
             }
         }
     }
-    
+
     breed() {
         if (this.energy >=2) {
             var newCell = random(this.chooseCell(0));

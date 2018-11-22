@@ -1,3 +1,4 @@
+ // the green one(1), breeds by separating 
  class Grass extends LivingCreature {
     constructor(x, y) {
         super(x, y);

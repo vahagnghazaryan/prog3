@@ -1,3 +1,4 @@
+// the yellow one(3), moves, breeds my separating  and dies as others, eat flower and turns into enemy, eat grass and add energy, 
 class GrassEater extends LivingCreature{
     constructor(x, y) {
         super(x, y);
@@ -60,8 +61,9 @@ class GrassEater extends LivingCreature{
                 
                 // Find the flower from arr and delete it 
                 for (var i in flowerArr) {
-                    if (this.x == flowerArr[i].x && flowerArr[i].y == this.y) {
-                        flowersArr.splice(i, 1);
+                    console.log(flowerArr)
+                    if (this.x == flowerArr[i].x && this.y == flowerArr[i].y) {
+                        flowerArr.splice(i, 1);
                     }
                 }
             }
