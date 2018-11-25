@@ -3,6 +3,7 @@ var grassEaterArr = [];
 var animalArr = [];
 var flowerArr = [];
 var enemyArr = [];
+var waterArr = [];
 
 var matrix = [ 
         [1,1,1,1,1,4,1,0,0,4,4,1,1,1,1,1,0,0,1,0],
@@ -12,11 +13,11 @@ var matrix = [
         [1,0,0,2,0,4,4,4,4,0,2,4,1,1,0,3,0,0,1,0],
         [1,0,2,0,0,1,0,0,0,0,2,4,1,3,0,3,0,0,0,0],
         [1,0,2,2,0,1,1,1,0,1,2,4,3,0,1,1,3,3,1,0],
-        [1,0,0,2,2,0,0,0,0,0,0,4,2,0,0,0,1,3,0,1],
-        [0,3,0,0,2,0,3,0,4,0,0,4,2,1,0,0,1,3,0,1],
-        [1,3,0,0,0,0,4,0,3,0,4,1,0,0,0,2,1,3,3,1],
-        [0,1,3,3,3,3,3,1,3,1,0,0,4,4,4,0,0,0,3,1],
-        [1,1,1,1,1,1,3,3,3,0,1,1,1,1,0,4,0,0,3,1],
+        [1,0,0,2,2,0,6,6,6,6,6,4,2,0,0,0,1,3,0,1],
+        [0,3,0,0,2,0,6,6,6,6,6,4,2,1,0,0,1,3,0,1],
+        [1,3,0,0,0,0,6,6,6,6,6,1,0,0,0,2,1,3,3,1],
+        [0,1,3,3,3,3,6,6,6,6,6,0,4,4,4,0,0,0,3,1],
+        [1,1,1,1,1,1,6,6,6,6,6,1,1,1,0,4,0,0,3,1],
         [1,1,0,0,0,1,3,1,1,3,4,1,0,0,1,4,2,0,3,1],
         [1,1,0,0,1,1,3,3,0,3,0,1,4,0,1,1,0,3,3,1],
         [1,1,0,0,0,2,2,3,3,3,4,1,0,4,0,1,3,2,3,1],
@@ -76,6 +77,9 @@ function create_interface(){
             } else if (matrix[y][x] == 5) {
                 fill("black");
                 rect(x * side, y * side, side, side);
+            } else if (matrix[y][x] == 6) {
+                fill("blue");
+                rect(x * side, y * side, side, side);
             }
         }
     }
@@ -101,6 +105,10 @@ function characters_setup(){
             } else if (matrix[y][x] == 5) {
                 var en = new Enemy(x, y)
                 enemyArr.push(en);
+
+            } else if (matrix[y][x] == 6) {
+                var wt = new Water(x, y)
+                waterArr.push(wt);
 
             }
         }
@@ -133,12 +141,18 @@ function action(){
             break;
         enemyArr[i].die();
     }
+    for (var i in waterArr)
+    {
+        waterArr[i].spread();
+        if (k>= 30 && k<=40)
+            waterArr[i].freeze();
+    }
 }
 
 
 function setup() {
 
-    frameRate(1);
+    frameRate(2);
     createCanvas(matrix[0].length * side, matrix.length * side);
     background('#acacac');
 
