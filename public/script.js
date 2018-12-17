@@ -1,4 +1,4 @@
-var socket = io.connect('http://localhost:3000');
+var socket = io.connect('http://localhost:4444');
 var grassArr = [];
 var grassEaterArr = [];
 var animalArr = [];
@@ -246,8 +246,6 @@ function mouseClicked() {
     for (var i in waterArr) {
         waterArr[i].mutation();
     }
-    //console.log(grassEaterArr)
-    console.log(grassArr)
 }
 function setup() {
 
@@ -258,16 +256,16 @@ function setup() {
     characters_setup();
 }
 function draw() {
-    if (frameCount % 50 === 0) {
-        statistics.timestamp = (new Date()).toString();
-        statistics.framecount = frameCount;
-        socket.emit("send data", statistics);
-        //console.log(statistics)
-    }
     season = change_season();
     action(season);
     set_interface(season);
     k++;
+    if (frameCount % 100 === 0) {
+        console.log(statistics)
+        statistics.timestamp = (new Date()).toString();
+        statistics.framecount = frameCount;
+        socket.emit("send data", statistics);
+    }
     if (k == 40)
         k = 0;
         
